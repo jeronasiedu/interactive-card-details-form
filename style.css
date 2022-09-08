@@ -5,6 +5,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+button,
+input {
+  font-family: inherit;
+  outline: none;
+}
 :root {
   --error: hsl(0, 100%, 66%);
   --white_grayish_violet: hsl(270, 3%, 87%);
@@ -24,6 +29,22 @@ main {
   background: url("images/bg-main-desktop.png");
   background-size: cover;
   background-repeat: no-repeat;
+  position: relative;
+}
+.card-front-container,
+.card-back-container {
+  position: absolute;
+}
+.card-front-container {
+  top: 10rem;
+  right: -8rem;
+}
+.card-back-container {
+  top: 28rem;
+  right: -12rem;
+}
+:is(.card-back-container) img {
+  filter: drop-shadow(0px 30px 60px rgba(0, 0, 0, 0.2));
 }
 .form-container {
   flex: 0.7;
@@ -31,20 +52,116 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: 0.5rem;
+}
+form {
+  width: min(95%, 30rem);
 }
 label {
   text-transform: uppercase;
   display: block;
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input {
+  width: 100%;
+  padding: 0.7rem 0.5rem;
+  border: 2px solid var(--white_grayish_violet);
+
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+input:focus {
+  border-color: var(--dark_grayish_violet);
 }
 
-@media screen and (max-width: 768px) {
+/* input:invalid {
+  border-color: var(--error);
+  border-width: 1.4px;
+} */
+.single-input {
+  margin-bottom: 1rem;
+}
+.expiry-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.expiry-container .date label + div {
+  display: flex;
+  gap: 0.5rem;
+}
+.expiry-container .date label + div input {
+  width: 4.5rem;
+}
+.btn {
+  padding: 1rem;
+  border: none;
+  font-size: 1rem;
+  background: var(--very_dark_violet);
+  color: var(--white_grayish_violet);
+  width: 100%;
+  border-radius: 0.4rem;
+  transition: scale 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  cursor: pointer;
+}
+.btn:hover {
+  scale: 1.05;
+}
+.btn:active {
+  scale: 0.98;
+}
+
+@media screen and (max-width: 888px) {
   main {
     flex-direction: column;
   }
   .card {
+    flex: 1.4;
+    min-height: 35vh;
     background: url("images/bg-main-mobile.png");
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: hidden;
+  }
+
+  .card-back-container,
+  .card-front-container {
+    inset: initial;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+  }
+  .card-back-container {
+    left: 70%;
+    top: 40%;
+  }
+  .card-front-container {
+    left: 30%;
+    top: 70%;
+  }
+}
+@media screen and (max-width: 768px) {
+  :is(.card-front-container, .card-back-container) img {
+    scale: 0.8;
+  }
+}
+@media screen and (max-width: 550px) {
+  :is(.card-front-container, .card-back-container) img {
+    scale: 0.7;
+  }
+  .card {
+    min-height: 40vh;
+  }
+  .card-front-container {
+  }
+}
+@media screen and (max-width: 400px) {
+  :is(.card-front-container, .card-back-container) img {
+    scale: 0.58;
   }
 }
