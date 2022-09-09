@@ -35,6 +35,11 @@ main {
 .card-back-container {
   position: absolute;
 }
+.card-front-container .logo {
+  position: absolute;
+  top: 1.5rem;
+  left: 2rem;
+}
 .card-front-container {
   top: 10rem;
   right: -8rem;
@@ -43,7 +48,7 @@ main {
   top: 28rem;
   right: -12rem;
 }
-:is(.card-back-container) img {
+:is(.card-back-container) .card-image {
   filter: drop-shadow(0px 30px 60px rgba(0, 0, 0, 0.2));
 }
 .form-container {
@@ -146,12 +151,12 @@ input:focus {
   }
 }
 @media screen and (max-width: 768px) {
-  :is(.card-front-container, .card-back-container) img {
+  :is(.card-front-container, .card-back-container) .card-image {
     scale: 0.8;
   }
 }
 @media screen and (max-width: 550px) {
-  :is(.card-front-container, .card-back-container) img {
+  :is(.card-front-container, .card-back-container) .card-image {
     scale: 0.7;
   }
   .card {
@@ -162,7 +167,7 @@ input:focus {
   }
 }
 @media screen and (max-width: 400px) {
-  :is(.card-front-container, .card-back-container) img {
+  :is(.card-front-container, .card-back-container) .card-image {
     scale: 0.58;
   }
   .card-front-container {
